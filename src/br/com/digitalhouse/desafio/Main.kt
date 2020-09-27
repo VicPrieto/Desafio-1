@@ -30,23 +30,33 @@ fun main() {
 
     val manager = DigitalHouseManager(listaAluno, listaProfT, listaProfA, listaCurso, listaMatricula)
 
+
+    manager.registrarCurso(curso1)
+    manager.excluirCurso(20001)
+    manager.registrarProfAdj(prof2)
+    manager.registrarProfTit(prof1)
+    manager.excluirProfAdj(60002)
+    manager.excluirProfTit(60001)
+    manager.registrarAluno(aluno1)
+
     println(
         "---- I: Alocando Professores ---- " +
                 "\n ${manager.alocarProfessores(20001, 60001, 60002)}" +
                 "\n ${manager.alocarProfessores(20002, 60003, 60004)}"
     )
 
-    println(
-        "---- II: Matriculando alunos no curso de ${curso1.nome}" +
-                "\n ${manager.matricularAluno(80002, 20001)}" +
-                "\n ${manager.matricularAluno(80003, 20001)}"
-    )
-
-    println(
-        "---- III: Matriculando alunos no curso de ${curso2.nome}" +
-                "\n ${manager.matricularAluno(80001, 20002)}" +
-                "\n ${manager.matricularAluno(80004, 20002)}" +
-                "\n ${manager.matricularAluno(80002, 20002)}"
-    )
+//    println(
+//        "---- II: Matriculando alunos no curso de ${curso1.nome}" +
+//                "\n ${manager.matricularAluno(80002, 20001)}" +
+//                "\n ${manager.matricularAluno(80003, 20001)}"
+//    )
+//
+//    println(
+//        "---- III: Matriculando alunos no curso de ${curso2.nome}" +
+//                "\n ${manager.matricularAluno(80001, 20002)}" +
+//                "\n ${manager.matricularAluno(80004, 20002)}" +
+//                "\n ${manager.matricularAluno(80002, 20002)}"
+//    )
 
 }
+
