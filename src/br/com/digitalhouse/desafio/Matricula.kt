@@ -3,6 +3,5 @@ package br.com.digitalhouse.desafio
 import java.time.LocalDate
 import java.util.*
 
-class Matricula(aluno: Aluno, curso: Curso, data: LocalDate) {
-    var data = Date(25092020)
+data class Matricula(val aluno: Aluno, val curso: Curso, val data: LocalDate) {
 }
