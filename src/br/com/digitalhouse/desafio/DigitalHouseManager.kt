@@ -81,33 +81,32 @@ class DigitalHouseManager(
     }
 
     fun alocarProfessores(codigoCurso: Int, codigoProfT: Int, codigoProfA: Int) {
-        var profT = professoresTit.groupBy(ProfessorTitular::codigoProf, ProfessorTitular::nome)
-        var profA = professoresAdj.groupBy(ProfessorAdjunto::codigoProf, ProfessorAdjunto::nome)
-        var curso = cursos.groupBy(Curso::codigoCurso, Curso::nome)
+        lateinit var profT: ProfessorTitular
+        lateinit var profA: ProfessorAdjunto
+        lateinit var cursoA: Curso
+        for (prof in professoresTit) {
+            if (prof.codigoProf == codigoProfT) {
+                profT = prof
+            }
+        }
+        for (prof in professoresAdj) {
+            if (prof.codigoProf == codigoProfA) {
+                profA = prof
+            }
+        }
+        for (curso in cursos) {
+            if (curso.codigoCurso == codigoCurso) {
+                cursoA = curso
+            }
+        }
+        cursoA.professorTitular = profT
+        cursoA.professorAdjunto = profA
 
-        println(
-            "Os(as) professores(as) ${profT.get(codigoProfT)} -Titular e ${profA.get(codigoProfA)} -Adjunto- foram alocados(as) no curso ${curso.get(codigoCurso)}."
-        )
+        println("Os(as) professores(as) ${profT.nome} ${profT.sobrenome} (Titular, com especialidade em ${profT.especialidade}) e ${profA.nome} ${profA.sobrenome} (Adjunto, com ${profA.horasDeMonitoria} horas de monitoria) foram alocados(as) no curso ${cursoA.nome}.")
 
-        //Outro jeito de fazer
-//        lateinit var profT: ProfessorTitular
-//        lateinit var profA: ProfessorAdjunto
-//        lateinit var curso2: Curso
-//        for (prof in professoresTit) {
-//            if (prof.codigoProf == codigoProfT) {
-//                profT = prof
-//            }
-//        }
-//        for (prof in professoresAdj) {
-//            if (prof.codigoProf == codigoProfA) {
-//                profA = prof
-//            }
-//        }
-//        for (curso in cursos) {
-//            if (curso.codigoCurso == codigoCurso) {
-//                curso2 = curso
-//            }
-//        }
-//        println("Os(as) professores(as) ${profT.nome} ${profT.sobrenome} (Titular, com especialidade em ${profT.especialidade}) \ne ${profA.nome} ${profA.sobrenome} (Adjunto, com ${profA.horasDeMonitoria} horas de monitoria) \nforam alocados(as) no curso ${curso2.nome}.")
+//        var profT = professoresTit.groupBy(ProfessorTitular::codigoProf, ProfessorTitular::nome)
+//        var profA = professoresAdj.groupBy(ProfessorAdjunto::codigoProf, ProfessorAdjunto::nome)
+//        var curso = cursos.groupBy(Curso::codigoCurso, Curso::nome)
+//        println( "Os(as) professores(as) ${profT.get(codigoProfT)} -Titular e ${profA.get(codigoProfA)} -Adjunto- foram alocados(as) no curso ${curso.get(codigoCurso)}.")
     }
 }

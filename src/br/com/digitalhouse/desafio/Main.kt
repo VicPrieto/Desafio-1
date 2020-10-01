@@ -10,6 +10,7 @@ fun main() {
     val aluno3 = Aluno("Jules", "Vaughn", 80003)
     val aluno4 = Aluno("Daniel", "Ceasar", 80004)
     var alunos = mutableListOf(aluno1, aluno2, aluno3, aluno4)
+    var alunosCurso: MutableList<Aluno> = mutableListOf()
 
     //PROFESSORES
     val prof1 = ProfessorTitular("Matt", "Maesom", 0, 60001, "Kotlin")
@@ -20,8 +21,8 @@ fun main() {
     var professoresAdj = mutableListOf(prof2, prof4)
 
     //CURSOS
-    val curso1 = Curso("Web Java", 20001, 3)
-    val curso2 = Curso("Mobile Kotlin", 20002, 2)
+    val curso1 = Curso("Web Java", 20001, 3, alunosCurso, prof1, prof2)
+    val curso2 = Curso("Mobile Kotlin", 20002, 2, alunosCurso, prof3, prof4)
     var cursos = mutableListOf(curso1, curso2)
 
     //MATRICULAS
@@ -38,10 +39,11 @@ fun main() {
     manager.registrarAluno(aluno1)
     println("\n")
 
-    println("------ Excluindo cursos e professores ------")
+    println("------ Excluindo cursos, professores, e alunos ------")
     manager.excluirCurso(20001)
     manager.excluirProfAdj(60002)
     manager.excluirProfTit(60001)
+    curso1.excluirAluno(aluno1)
     println("\n")
 
     println("------ Alocando professores ------")
