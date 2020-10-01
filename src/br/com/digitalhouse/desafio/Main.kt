@@ -21,8 +21,8 @@ fun main() {
     var professoresAdj = mutableListOf(prof2, prof4)
 
     //CURSOS
-    val curso1 = Curso("Web Java", 20001, 3, alunosCurso, prof1, prof2)
-    val curso2 = Curso("Mobile Kotlin", 20002, 2, alunosCurso, prof3, prof4)
+    val curso1 = Curso("Web Java", 20001, 3, alunosCurso)
+    val curso2 = Curso("Mobile Kotlin", 20002, 2, alunosCurso)
     var cursos = mutableListOf(curso1, curso2)
 
     //MATRICULAS
@@ -32,11 +32,11 @@ fun main() {
     val manager = DigitalHouseManager(alunos, professoresTit, professoresAdj, cursos, matriculas)
 
     println("------ Registrando cursos, professores, e alunos ------")
-    manager.registrarCurso(curso1)
-    manager.registrarCurso(curso2)
-    manager.registrarProfAdj(prof2)
-    manager.registrarProfTit(prof1)
-    manager.registrarAluno(aluno1)
+    manager.registrarCurso("Web Java", 20001, 3)
+    manager.registrarCurso("Mobile Kotlin", 20002, 2)
+    manager.registrarProfAdj("Alex", "Benjamin", 60002)
+    manager.registrarProfTit("Matt", "Maesom", 60001, "Kotlin")
+    manager.registrarAluno("Gabriel", "Piccolo", 80001)
     println("\n")
 
     println("------ Excluindo cursos, professores, e alunos ------")

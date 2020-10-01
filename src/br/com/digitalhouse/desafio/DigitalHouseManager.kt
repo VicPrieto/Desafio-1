@@ -10,9 +10,11 @@ class DigitalHouseManager(
     var cursos: MutableList<Curso> = mutableListOf(),
     var matriculas: MutableList<Matricula> = mutableListOf()
 ) {
-    fun registrarCurso(curso: Curso) {
-        cursos.add(curso)
-        println("O curso ${curso.nome} foi registrado com sucesso :)")
+    fun registrarCurso(nome: String, codigoCurso: Int, vagas: Int): Curso {
+        var cursoNovo: Curso = Curso(nome, codigoCurso, vagas, mutableListOf())
+        cursos.add(cursoNovo)
+        println("O curso ${cursoNovo.nome} foi registrado com sucesso :)")
+        return cursoNovo
     }
 
     fun excluirCurso(codigoCurso: Int) {
@@ -21,16 +23,18 @@ class DigitalHouseManager(
         println("O curso ${curso.get(codigoCurso)} foi excluido :(")
     }
 
-    fun registrarProfAdj(professorA: ProfessorAdjunto) {
-        professorA.tempoDeCasa = 0
+    fun registrarProfAdj(nome: String, sobrenome: String, codigoProf: Int): ProfessorAdjunto {
+        var professorA = ProfessorAdjunto(nome, sobrenome, 0, codigoProf, 0)
         professoresAdj.add(professorA)
-        println("O(a) professor(a) adjunto(a) ${professorA.nome} ${professorA.sobrenome} foi registrado(a) com sucesso!")
+        println("O(a) professor(a) adjunto(a) ${professorA.nome} ${professorA.sobrenome} foi registrado(a) com sucesso :)")
+        return professorA
     }
 
-    fun registrarProfTit(professorA: ProfessorTitular) {
-        professorA.tempoDeCasa = 0
-        professoresTit.add(professorA)
-        println("O(a) professor(a) titular ${professorA.nome} ${professorA.sobrenome} foi registrado(a) com sucesso!")
+    fun registrarProfTit(nome: String, sobrenome: String, codigoProf: Int, especialidade: String): ProfessorTitular {
+        var professorT = ProfessorTitular(nome, sobrenome, 0, codigoProf, especialidade)
+        professoresTit.add(professorT)
+        println("O(a) professor(a) titular ${professorT.nome} ${professorT.sobrenome} foi registrado(a) com sucesso :)")
+        return professorT
     }
 
     fun excluirProfAdj(codigoProf: Int) {
@@ -45,9 +49,10 @@ class DigitalHouseManager(
         println("O(a) professor titular ${profT.get(codigoProf)} foi excluído(a) :(")
     }
 
-    fun registrarAluno(aluno: Aluno) {
-        alunos.add(aluno)
+    fun registrarAluno(nome: String, sobrenome: String, codigoAluno: Int): Aluno {
+        var aluno = Aluno(nome, sobrenome, codigoAluno)
         println("O(a) aluno(a) ${aluno.nome} ${aluno.sobrenome} foi registrado(a) com sucesso :)")
+        return aluno
     }
 
     fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
@@ -99,10 +104,8 @@ class DigitalHouseManager(
                 cursoA = curso
             }
         }
-        cursoA.professorTitular = profT
-        cursoA.professorAdjunto = profA
 
-        println("Os(as) professores(as) ${profT.nome} ${profT.sobrenome} (Titular, com especialidade em ${profT.especialidade}) e ${profA.nome} ${profA.sobrenome} (Adjunto, com ${profA.horasDeMonitoria} horas de monitoria) foram alocados(as) no curso ${cursoA.nome}.")
+        println("Os(as) professores(as) ${profT.nome} ${profT.sobrenome} (Titular, com especialidade em ${profT.especialidade}) e ${profA.nome} ${profA.sobrenome} (Adjunto, com ${profA.horasDeMonitoria} horas de monitoria) foram alocados(as) no curso ${cursoA.nome}!")
 
 //        var profT = professoresTit.groupBy(ProfessorTitular::codigoProf, ProfessorTitular::nome)
 //        var profA = professoresAdj.groupBy(ProfessorAdjunto::codigoProf, ProfessorAdjunto::nome)
