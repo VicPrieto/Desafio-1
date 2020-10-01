@@ -8,7 +8,7 @@ fun main() {
     val aluno1 = Aluno("Gabriel", "Piccolo", 80001)
     val aluno2 = Aluno("Rue", "Bennet", 80002)
     val aluno3 = Aluno("Jules", "Vaughn", 80003)
-    val aluno4 = Aluno("Daniel", "Ceasar", 80003)
+    val aluno4 = Aluno("Daniel", "Ceasar", 80004)
     var alunos = mutableListOf(aluno1, aluno2, aluno3, aluno4)
 
     //PROFS
@@ -30,36 +30,28 @@ fun main() {
 
     val manager = DigitalHouseManager(alunos, professoresTit, professoresAdj, cursos, matriculas)
 
-    manager.registrarCurso(curso1)
-    manager.registrarCurso(curso2)
-    manager.registrarProfAdj(prof2)
-    manager.registrarProfTit(prof1)
-    manager.registrarAluno(aluno1)
+    //Registrando cursos, professores e alunos
+//    manager.registrarCurso(curso1)
+//    manager.registrarCurso(curso2)
+//    manager.registrarProfAdj(prof2)
+//    manager.registrarProfTit(prof1)
+//    manager.registrarAluno(aluno1)
 
-    manager.excluirCurso(20001)
-    println("Excluindo prof adjunto: \n${manager.excluirProfAdj(60002)}")
-    manager.excluirProfTit(60001)
+    //Excluindo cursos e professores
+//    manager.excluirCurso(20001)
+//    manager.excluirProfAdj(60002)
+//    manager.excluirProfTit(60001)
 
+    //Alocando professores
+    manager.alocarProfessores(20001, 60001, 60002)
+    manager.alocarProfessores(20002, 60003, 60004)
 
+    //Matriculando alunos
+//    manager.matricularAluno(80002, 20001)
+//    manager.matricularAluno(80003, 20001)
 
-    println(
-        "---- I: Alocando Professores ---- " +
-                "\n ${manager.alocarProfessores(20001, 60001, 60002)}" +
-                "\n ${manager.alocarProfessores(20002, 60003, 60004)}"
-    )
-
-    println(
-        "---- II: Matriculando alunos no curso de ${curso1.nome}" +
-                "\n ${manager.matricularAluno(80002, 20001)}" +
-                "\n ${manager.matricularAluno(80003, 20001)}"
-    )
-
-    println(
-        "---- III: Matriculando alunos no curso de ${curso2.nome}" +
-                "\n ${manager.matricularAluno(80001, 20002)}" +
-                "\n ${manager.matricularAluno(80004, 20002)}" +
-                "\n ${manager.matricularAluno(80002, 20002)}"
-    )
-
-}
+//    manager.matricularAluno(80001, 20002)
+//    manager.matricularAluno(80004, 20002)
+//    manager.matricularAluno(80002, 20002)
+    }
 

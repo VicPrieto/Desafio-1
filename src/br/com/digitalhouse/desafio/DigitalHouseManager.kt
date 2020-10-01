@@ -13,13 +13,13 @@ class DigitalHouseManager(
 
     fun registrarCurso(curso: Curso) {
         cursos.add(curso)
-        println("O curso ${curso.nome} foi adicionado com sucesso :)")
+        println("O curso ${curso.nome} foi registrado com sucesso :)")
     }
 
     fun excluirCurso(codigoCurso: Int) {
         var curso = cursos.groupBy(Curso::codigoCurso, Curso::nome)
         cursos.remove(curso)
-        println("O curso ${curso.get(codigoCurso)} foi removido :(")
+        println("O curso ${curso.get(codigoCurso)} foi excluido :(")
     }
 
     fun registrarProfAdj(professorA: ProfessorAdjunto) {
@@ -35,20 +35,15 @@ class DigitalHouseManager(
     }
 
     fun excluirProfAdj(codigoProf: Int) {
-        lateinit var prof: ProfessorAdjunto
-        for (professor: ProfessorAdjunto in professoresAdj) {
-            if (professor.codigoProf == codigoProf) {
-                prof = professor
-                professoresAdj.remove(prof)
-            }
-        }
-        println("O/A Prof ${prof.nome} foi removido.")
+        var profA = professoresAdj.groupBy(ProfessorAdjunto::codigoProf, ProfessorAdjunto::nome)
+        professoresTit.remove(profA)
+        println("O Professor Adjunto ${profA.get(codigoProf)} foi excluído :(")
     }
 
     fun excluirProfTit(codigoProf: Int) {
         var profT = professoresTit.groupBy(ProfessorTitular::codigoProf, ProfessorTitular::nome)
         professoresTit.remove(profT)
-        println("O Professor Titular ${profT.get(codigoProf)} foi removido :(")
+        println("O Professor Titular ${profT.get(codigoProf)} foi excluído :(")
     }
 
     fun registrarAluno(aluno: Aluno) {
@@ -61,25 +56,26 @@ class DigitalHouseManager(
         lateinit var alunoM: Aluno
         var data: LocalDate = LocalDate.now()
 
-        for (curso: Curso in cursos) {
+        for (curso in cursos) {
             if (curso.codigoCurso == codigoCurso) {
                 cursoM = curso
             }
         }
-        for (aluno: Aluno in alunos) {
+        for (aluno in alunos) {
             if (aluno.codigoAluno == codigoAluno) {
                 alunoM = aluno
             }
         }
 
-        if (cursoM.vagas > matriculas.size) {
+        if (cursoM.vagas > 0) {
             var matricula: Matricula = Matricula(alunoM, cursoM, data)
             matriculas.add(matricula)
-            println("Matrícula realizada com sucesso :)")
+            cursoM.vagas -= 1
+            println("Aluno(a) ${alunoM.nome} ${alunoM.sobrenome} matrículado com sucesso no curso ${cursoM.nome} :)" +
+                    "\n Vagas restantes: ${cursoM.vagas}.")
         } else {
-            println("Não foi possível realizar a matrícula pois todas as vagas já foram preenchidas :(")
+            println("Não foi possível matricular o ${alunoM.nome} ${alunoM.sobrenome} pois todas as vagas do curso ${cursoM.nome} já foram preenchidas :(")
         }
-
     }
 
     fun alocarProfessores(codigoCurso: Int, codigoProfT: Int, codigoProfA: Int) {
@@ -87,13 +83,8 @@ class DigitalHouseManager(
         var profA = professoresAdj.groupBy(ProfessorAdjunto::codigoProf, ProfessorAdjunto::nome)
         var curso = cursos.groupBy(Curso::codigoCurso, Curso::nome)
 
-
         println(
-            "\nO ${curso.get(codigoCurso)} tem ${profT.get(codigoProfT)} como professor titular e ${
-                profA.get(
-                    codigoProfA
-                )
-            } como professor adjunto."
+            "Os(As) professores(as) ${profT.get(codigoProfT)} e ${profA.get(codigoProfA)} foram alocados(as) no curso ${curso.get(codigoCurso)}."
         )
     }
 }
