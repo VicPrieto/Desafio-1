@@ -11,7 +11,7 @@ fun main() {
     val aluno4 = Aluno("Daniel", "Ceasar", 80004)
     var alunos = mutableListOf(aluno1, aluno2, aluno3, aluno4)
 
-    //PROFS
+    //PROFESSORES
     val prof1 = ProfessorTitular("Matt", "Maesom", 0, 60001, "Kotlin")
     val prof2 = ProfessorAdjunto("Alex", "Benjamin", 2, 60002, 300)
     val prof3 = ProfessorTitular("Clara", "Laffut", 8, 60003, "UX/UX Design")
@@ -30,28 +30,31 @@ fun main() {
 
     val manager = DigitalHouseManager(alunos, professoresTit, professoresAdj, cursos, matriculas)
 
-    //Registrando cursos, professores e alunos
-//    manager.registrarCurso(curso1)
-//    manager.registrarCurso(curso2)
-//    manager.registrarProfAdj(prof2)
-//    manager.registrarProfTit(prof1)
-//    manager.registrarAluno(aluno1)
+    println("------ Registrando cursos, professores, e alunos ------")
+    manager.registrarCurso(curso1)
+    manager.registrarCurso(curso2)
+    manager.registrarProfAdj(prof2)
+    manager.registrarProfTit(prof1)
+    manager.registrarAluno(aluno1)
+    println("\n")
 
-    //Excluindo cursos e professores
-//    manager.excluirCurso(20001)
-//    manager.excluirProfAdj(60002)
-//    manager.excluirProfTit(60001)
+    println("------ Excluindo cursos e professores ------")
+    manager.excluirCurso(20001)
+    manager.excluirProfAdj(60002)
+    manager.excluirProfTit(60001)
+    println("\n")
 
-    //Alocando professores
+    println("------ Alocando professores ------")
     manager.alocarProfessores(20001, 60001, 60002)
     manager.alocarProfessores(20002, 60003, 60004)
+    println("\n")
 
-    //Matriculando alunos
-//    manager.matricularAluno(80002, 20001)
-//    manager.matricularAluno(80003, 20001)
+    println("------ Matriculando alunos ------")
+    manager.matricularAluno(80002, 20001)
+    manager.matricularAluno(80003, 20001)
 
-//    manager.matricularAluno(80001, 20002)
-//    manager.matricularAluno(80004, 20002)
-//    manager.matricularAluno(80002, 20002)
-    }
+    manager.matricularAluno(80001, 20002)
+    manager.matricularAluno(80004, 20002)
+    manager.matricularAluno(80002, 20002)
+}
 
