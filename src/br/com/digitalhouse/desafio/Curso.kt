@@ -15,10 +15,7 @@ data class Curso(
         other as Curso
         return this.codigoCurso == other.codigoCurso
     }
-    init {
-        var professorTitular: ProfessorTitular
-        var professorAdjunto: ProfessorAdjunto
-    }
+
     fun adcAluno(aluno: Aluno): Boolean {
         return if (alunosDoCurso.size < vagas) {
             alunosDoCurso.add(aluno)
